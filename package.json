@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cpy \"src/data/**/*.md\" dist/data",
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "test": "vitest",
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@types/node": "^24.9.1",
     "@vitest/ui": "^4.0.2",
+    "cpy-cli": "^6.0.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.2"
   }

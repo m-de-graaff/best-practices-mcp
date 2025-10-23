@@ -31,7 +31,10 @@ function validatePath(basePath: string, targetPath: string): boolean {
  * @throws FileReadError for other file system errors
  */
 export async function getPractice(args: GetPracticeInput): Promise<string> {
-  const basePath = path.resolve("src/data");
+  // Resolve data directory relative to the compiled file location
+  // In development: src/tools/getPractice.ts -> src/data
+  // In production: dist/tools/getPractice.js -> dist/data
+  const basePath = path.resolve(__dirname, "../data");
   const fileName = TOPIC_TO_FILE[args.topic as keyof typeof TOPIC_TO_FILE];
 
   if (!fileName) {

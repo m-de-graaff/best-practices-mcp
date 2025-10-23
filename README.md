@@ -226,23 +226,56 @@ src/data/
 ### Scripts
 
 ```bash
-# Build TypeScript
+# Build TypeScript and copy data files to dist/
 pnpm build
 
-# Run in development mode
+# Run in development mode (no build needed)
 pnpm dev
 
-# Run in production mode
+# Run in production mode (requires build first)
 pnpm start
 
-# Run tests (when configured)
+# Run tests
 pnpm test
+
+# Run tests with UI
+pnpm test:ui
+
+# Run tests with coverage
+pnpm test:coverage
 
 # Lint code (when configured)
 pnpm lint
 
 # Format code (when configured)
 pnpm format
+```
+
+### Build Process
+
+The build process performs two steps:
+1. **TypeScript Compilation** - Compiles `.ts` files to `.js` in the `dist/` directory
+2. **Asset Copying** - Copies markdown files from `src/data/` to `dist/data/`
+
+This ensures the built distribution is self-contained and can run without the `src/` directory.
+
+**Build output structure:**
+```
+dist/
+├── data/                    # Markdown files (copied from src/data/)
+│   ├── react-best-practices.md
+│   ├── nextjs-best-practices.md
+│   ├── typescript-best-practices.md
+│   ├── zustand-best-practices.md
+│   ├── tanstack-query-best-practices.md
+│   └── ui-best-practices.md
+├── index.js                 # Entry point
+├── server.js                # MCP server setup
+├── types.js                 # Type definitions
+├── validation.js            # Input validation
+├── tools/                   # Tool implementations
+├── resources/               # Resource handlers
+└── utils/                   # Utilities (errors, logger)
 ```
 
 ### Configuration Files
